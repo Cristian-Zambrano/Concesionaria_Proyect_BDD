@@ -13,7 +13,7 @@ def step_impl(context):
 
 @step('el cliente abona "25000" para reservar el "vehiculo_1"')
 def step_impl(context):
-    assert context.cliente.abonar(context.vehiculo, 25000)
+    assert context.cliente.abonar(context.cliente.vehiculo_seleccionado, 25000)
 
 @step('el "vehiculo_1" tendra un estado de "abonando"')
 def step_impl(context):
