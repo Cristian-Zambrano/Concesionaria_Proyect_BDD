@@ -30,7 +30,6 @@ class Vehiculo():
 
     def actualizar_abono_total(self, monto):
         self.total_abonado += monto
-        print(monto)
         self.actualizar_estado(self.total_abonado)
 
     def obtener_total_abonado(self):
