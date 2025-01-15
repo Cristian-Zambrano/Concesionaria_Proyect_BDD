@@ -13,7 +13,7 @@ def step_impl(context):
 
 @step('el cliente abona "25000" para reservar el "vehiculo_1"')
 def step_impl(context):
-    assert context.cliente.abonar(context.cliente.vehiculo_seleccionado, 25000)
+    assert context.cliente.abonar( 25000)
 
 @step('el "vehiculo_1" tendra un estado de "abonando"')
 def step_impl(context):
@@ -21,7 +21,7 @@ def step_impl(context):
 
 @step('si el "total_abonado" es igual al 30% de "100000" que es el costo del vehiculo')
 def step_impl(context):
-    assert context.cliente.abonar(context.vehiculo, 5000)
+    assert context.cliente.abonar( 5000)
 
 @step('el "vehiculo_1" tendra un estado de "reservado"')
 def step_impl(context):
@@ -35,12 +35,12 @@ def step_impl(context):
     context.catalogo = Catalogo()
     context.catalogo.agregar_vehiculo(context.vehiculo)
     context.cliente.seleccionar_vehiculo(context.vehiculo)
-    context.cliente.abonar(context.vehiculo, 30000)
+    context.cliente.abonar(30000)
     assert context.cliente.vehiculo_seleccionado.obtener_estado() == "reservado"
 
 @step('el cliente abone los restantes "70000" del "vehiculo_1"')
 def step_impl(context):
-    context.cliente.abonar(context.vehiculo, 70000)
+    context.cliente.pagar_restante(70000)
 
 @step('el "vehiculo_1" tendra un estado de "vendido"')
 def step_impl(context):
