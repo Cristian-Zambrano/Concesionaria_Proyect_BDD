@@ -7,7 +7,7 @@ class Cliente():
         self.vehiculo_seleccionado = vehiculo
 
     def abonar(self, vehiculo, monto):
-        if monto > 0:
+        if monto > 0 and vehiculo.total_abonado < vehiculo.valor_comercial * 0.3:
             vehiculo.actualizar_abono_total(monto)
             return True
         return False
