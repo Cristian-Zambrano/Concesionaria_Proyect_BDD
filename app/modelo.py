@@ -6,14 +6,20 @@ class Cliente():
     def seleccionar_vehiculo(self, vehiculo):
         self.vehiculo_seleccionado = vehiculo
 
-    def abonar(self, vehiculo, monto):
-        if monto > 0 and vehiculo.total_abonado < vehiculo.valor_comercial * 0.3:
-            vehiculo.actualizar_abono_total(monto)
+    def abonar(self, monto):
+        if monto > 0 and self.vehiculo_seleccionado.obtener_estado() != "reservado": #-1
+            self.vehiculo_seleccionado.actualizar_abono_total(monto)
             return True
         return False
 
     def cancelar_reserva(self, vehiculo):
         self.vehiculo_seleccionado = None
+
+    def pagar_restante(self, valor_restante):
+        if self.vehiculo_seleccionado.obtener_estado() == "reservado" and self.vehiculo_seleccionado.valor_comercial - self.vehiculo_seleccionado.total_abonado == valor_restante:
+            self.vehiculo_seleccionado.actualizar_abono_total(valor_restante)
+            return True
+        return False
 
 class Vehiculo():
     def __init__(self, nombre, valor_comercial):
@@ -24,6 +30,7 @@ class Vehiculo():
 
     def actualizar_abono_total(self, monto):
         self.total_abonado += monto
+        print(monto)
         self.actualizar_estado(self.total_abonado)
 
     def obtener_total_abonado(self):
